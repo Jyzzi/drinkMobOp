@@ -1,8 +1,13 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import  HomeScreen  from './screens/Home'; 
-import  OptionScreen  from './screens/Option'; 
+import  HomeScreen  from './screens/Home';
+import  OptionScreen  from './screens/Option';
+import  ListBottle  from './screens/ListBottle';
+import  Detail  from './screens/BottleDetail';
+import  AddBottle  from './screens/AddBottle';
+import  ConfirmDelete  from './screens/ConfirmDelete';
+import  CreateCategorie  from './screens/CreateCategorie';
 
 
 
@@ -10,37 +15,77 @@ const Stack = createStackNavigator();
 
 function MyStack() {
   return (
-    <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
           headerStyle: {
             backgroundColor: '#f4511e',
+            height: 200,
           },
           headerTintColor: '#9E4646',
           headerTitleStyle: {
             fontWeight: 'bold',
+            fontSize: 50,
           },
-        }}      
-       initialRouteName="Home">
+        }}
+       >
 
-        <Stack.Screen 
-          name ="Home" 
-          component={HomeScreen} 
+        <Stack.Screen name ="Home" component={HomeScreen}
           options={{
-            title: " Accueil "
+            title: " Accueil ",
           }}
         />
 
-        <Stack.Screen 
-          name ="Option" 
-          component={OptionScreen} 
+        <Stack.Screen name ="Option" component={OptionScreen}
           options={{
-            title: " Option "
+            title: "Option"
           }}
         />
+
+        <Stack.Screen name ="List" component={ListBottle}
+          options={{
+            title: "Liste"
+          }}
+        />
+
+<Stack.Screen name ="Detail" component={Detail}
+          options={{
+            title: "Detail"
+          }}
+        />
+
+<Stack.Screen name ="Add" component={AddBottle}
+          options={{
+            title: "Ajout"
+          }}
+        />
+
+<Stack.Screen name ="ConfirmDelete" component={ConfirmDelete}
+          options={{
+            title: "ConfirmDelete"
+          }}
+        />
+
+<Stack.Screen name ="CreateCategorie" component={CreateCategorie}
+          options={{
+            title: "CreateCategorie"
+          }}
+        />
+
+{/* <Stack.Screen name ="Option" component={OptionScreen}
+          options={{
+            title: "Option"
+          }}
+        /> */}
+
       </Stack.Navigator>
-    </NavigationContainer>
+  
   );
 }
 
-export default MyStack;
+export default function App() {
+  return (
+    <NavigationContainer>
+      <MyStack />
+    </NavigationContainer>
+  );
+};
