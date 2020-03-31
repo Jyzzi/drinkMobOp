@@ -2,6 +2,7 @@ import React,{Component} from 'react'
 import { StyleSheet, Text, View, FlatList, Button, SafeAreaView, ActivityIndicator, TouchableOpacity } from 'react-native'
 import Categorie from '../components/Categorie'
 import NewCategorie from '../components/NewCategorie'
+import test1 from '../components/test'
 
 
 class HomeScreen extends Component {
@@ -54,15 +55,15 @@ class HomeScreen extends Component {
       
       
     render() {
-        // if (this.state.loading) {
-        //     return (
-        //     <View style={styles.loading_container}>
-        //         <ActivityIndicator size ='large'/>
-        //         <Text>Vérifier service Apache et nginx</Text>
-        //     </View>
-        //     )
-        // }
-        // else{
+        if (this.state.loading) {
+            return (
+            <View style={styles.loading_container}>
+                <ActivityIndicator size ='large'/>
+                <Text>Vérifier service Apache et nginx</Text>
+            </View>
+            )
+        }
+        else{
 
             return (
                 <SafeAreaView style={styles.background}>
@@ -73,15 +74,15 @@ class HomeScreen extends Component {
                             renderItem={({item}) =>
                                 <Categorie data={item} 
                                 listBottleWithCategorie={this._listBottleWithCategorie} 
-                                onSwipeFromLeft={() => alert('swiped from left!')}
-                                onRightPress={() => alert('pressed right!')}
+                                // onSwipeFromLeft={() => alert('swiped from left!')}
+                                // onRightPress={() => alert('pressed right!')}
                                 />}
                         />
-                      <NewCategorie/>    
+                      <test1/>    
                     </View>
                 </SafeAreaView>
             )
-            //}
+            }
         }
         
     }
