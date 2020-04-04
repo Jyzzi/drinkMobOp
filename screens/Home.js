@@ -2,10 +2,11 @@ import React,{Component} from 'react'
 import { StyleSheet, Text, View, FlatList, Button, SafeAreaView, ActivityIndicator, TouchableOpacity } from 'react-native'
 import Categorie from '../components/Categorie'
 import NewCategorie from '../components/NewCategorie'
-import test1 from '../components/test'
 
 
+  
 class HomeScreen extends Component {
+    
 
 
     constructor(props){
@@ -20,7 +21,7 @@ class HomeScreen extends Component {
     }
     // récuperer la liste de toutes les Categories
     getCategorie = () => {
-      fetch('http://192.168.0.12/request_php/allCategorie.php')
+      fetch('http://192.168.0.13/request_php/allCategorie.php')
         .then(res => res.json())
         .then(res => {
           this.setState({
@@ -40,7 +41,7 @@ class HomeScreen extends Component {
     
     // créer une nouvelle catégorie
     CreateNewCategorie = () => {
-        this.props.navigation.navigate("CreateCategorieScreen")
+        navigation.navigate("CreateCategorieScreen")
     }
 
     // créer nouvelle bouteille
@@ -78,7 +79,7 @@ class HomeScreen extends Component {
                                 // onRightPress={() => alert('pressed right!')}
                                 />}
                         />
-                      <test1/>    
+                      <NewCategorie/>    
                     </View>
                 </SafeAreaView>
             )

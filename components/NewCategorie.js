@@ -2,7 +2,7 @@ import React,{Component} from 'react'
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 
 
-class Categorie extends Component {
+class NewCategorie extends Component {
     render() {
         const {CreateNewBottle } = this.props
         return (
@@ -30,4 +30,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Categorie
+export default NewCategorie

@@ -1,35 +1,16 @@
 import React,{Component} from 'react'
 import { View, FlatList,ActivityIndicator,StyleSheet, Button } from 'react-native'
-import DetailBottle from '../components/DetailBottle'
+import DetailBottle from '../components/BottleDetailComp'
 
 class Detail extends Component {
 
-    static navigationOptions = ({ navigation }) => {
-        return {
-            headerTitle :"Detail",
-            headerStyle: {
-                height:100,
-                fontSize :200
-            },
-            headerRight :  <Button
-                title="search"
-                color="#0a0"
-                onPress={() => alert('This is the search')}
-            />,
-            headerLeft : <Button
-                title="Menu"
-                onPress={() => navigation.toggleDrawer()}
-            />
-            
-        }
-    }
     
     constructor(props){
         super(props)
 
     
     this.state = {
-        idBottle : this.props.navigation.getParam("id"),
+        idBottle : this.props.route.params.id,
         dataBottle : [],
         loading : true
     }
@@ -38,7 +19,7 @@ class Detail extends Component {
     
   
     getDetailBottle = () =>{
-        fetch('http://192.168.0.12/request_php/bottleWithId.php',{
+        fetch('http://192.168.0.13/request_php/bottleWithId.php',{
         method: 'POST',
         headers: {
             'Content-Type' : 'application/json',

@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyleSheet, Text, Button } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import  HomeScreen  from './screens/Home';
@@ -8,26 +9,32 @@ import  Detail  from './screens/BottleDetail';
 import  AddBottle  from './screens/AddBottle';
 import  ConfirmDelete  from './screens/ConfirmDelete';
 import  CreateCategorie  from './screens/CreateCategorie';
+import { useNavigation } from '@react-navigation/native';
+
 
 
 
 const Stack = createStackNavigator();
 
 function MyStack() {
+
   return (
       <Stack.Navigator
-        screenOptions={{
+        screenOptions={({ route, navigation }) => ({
           headerStyle: {
             backgroundColor: '#f4511e',
             height: 200,
           },
-          headerTintColor: '#9E4646',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-            fontSize: 50,
-          },
-        }}
-       >
+          headerLeft: () => (
+            <Button
+              onPress={() => navigation.navigate('Home')}
+              title="Info"
+            />
+          )  
+        })
+      }
+      >
+       
 
         <Stack.Screen name ="Home" component={HomeScreen}
           options={{
@@ -71,11 +78,6 @@ function MyStack() {
           }}
         />
 
-{/* <Stack.Screen name ="Option" component={OptionScreen}
-          options={{
-            title: "Option"
-          }}
-        /> */}
 
       </Stack.Navigator>
   

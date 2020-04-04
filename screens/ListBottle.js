@@ -31,17 +31,17 @@ class ListBottle extends Component {
         super(props)
         
     
-
+    console.log(this.props.route.params.id)
     this.state = {
-        idCategorie : this.props.navigation.getParam("id"),
+        idCategorie : this.props.route.params.id,
         listBottle : [],
         loading : true
     }
     }
 
-    // récuperer la liste de totues les Bottles
+    // récuperer la liste de toutes les bouteilles
     getListBottle = () => {
-      fetch('http://192.168.0.12/request_php/listBottle.php',{
+      fetch('http://192.168.0.13/request_php/listBottle.php',{
           method: 'POST',
           headers:{
               'Content-Type' : 'application/json',
@@ -62,7 +62,7 @@ class ListBottle extends Component {
 
 
     _detailBottle = (id) => {
-        this.props.navigation.navigate("DetailScreen", {id : id})
+        this.props.navigation.navigate("Detail", {id : id})
     }
 
 
@@ -71,18 +71,19 @@ class ListBottle extends Component {
       }
     
       
-      
+        
     render() {
-        if (this.state.loading) {
+        // if (this.state.loading) {
+        //     return (
+        //     <View style={styles.loading_container}>
+        //         <ActivityIndicator size ='large'/>
+        //         <Text>Vérifier service Apache et nginx</Text>
+        //     </View>
+        //     )
+        // }
+        // else{
             return (
-            <View style={styles.loading_container}>
-                <ActivityIndicator size ='large'/>
-                <Text>Vérifier service Apache et nginx</Text>
-            </View>
-            )
-        }
-        else{
-            return (
+               
                     <View>
                         <FlatList
                         data={this.state.listBottle}
@@ -90,11 +91,12 @@ class ListBottle extends Component {
                         renderItem={({item}) => <BottleOnList data={item} detailBottle={this._detailBottle} />}
                         />
                     </View>
+                
             )
             }
         }
         
-    }
+    //}
     
 
  const styles = StyleSheet.create({
