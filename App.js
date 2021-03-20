@@ -1,113 +1,70 @@
 import React from 'react';
-import { StyleSheet, View, Header, Text, Button, Image } from 'react-native'
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';// handle back button, screen tracking ...
 import { createStackNavigator } from '@react-navigation/stack';
-import  HomeScreen  from './screens/Home';
-import  OptionScreen  from './screens/Option';
-import  ListBottle  from './screens/ListBottle';
-import  Detail  from './screens/BottleDetail';
-import  AddBottle  from './screens/AddBottle';
-import  ConfirmDelete  from './screens/ConfirmDelete';
-import  CreateCategorie  from './screens/CreateCategorie';
-import { useNavigation } from '@react-navigation/native';
+import  HomeScreen  from './pages/home';
+import  NewBottleScreen  from './pages/newBottle';
+import  NewCategorieScreen  from './pages/newCategorie';
 import Icon from 'react-native-vector-icons/FontAwesome'
+
+
 
 
 
 const Stack = createStackNavigator();
 
-const ImageHeader = props => (
-  <View style={{ backgroundColor: '#eee' }}>
-    <Image
-      style={StyleSheet.absoluteFill}
-      source={require('./images/backGround.png')}
-    />
-    <Header {...props} style={{ backgroundColor: 'transparent' }}/>
-  </View>
-);
-
-function MyStack() {
-
+function App() {
   return (
+    <NavigationContainer>
       <Stack.Navigator
         screenOptions={({ route, navigation }) => ({
           headerTitleAlign: 'center',
           headerTitleStyle: {
-            fontSize:50
+            fontSize:30
           },
-        
+      
           title: "Votre Cave",
           headerStyle: {
             backgroundColor: '#f4511e',
-            height: 200,
-            
+            height: 100,  
           },
           headerLeft: () => (
             <Icon
               name="beer"
               color="white"
-              size={50}  
+              size={30}  
               onPress={() => navigation.navigate('Home')}
               style={{marginLeft: 20}}
             />
-          )  
-        })
-      }
+          ),
+          headerRight: () => (
+            <Icon
+              name="plus"
+              color="white"
+              size={30}  
+              onPress={() => navigation.navigate('Home')}
+              style={{marginRight: 20}}
+            />
+          )
+        })}
       >
-       
-
-        <Stack.Screen name ="Home" component={HomeScreen}
-          options={{
-            header: (props) => <ImageHeader {...props} />,
-          }}
+        <Stack.Screen 
+          name="Home" 
+          component={HomeScreen} 
+          
         />
-
-        <Stack.Screen name ="Option" component={OptionScreen}
-          options={{
-            title: "Option"
-          }}
+        <Stack.Screen 
+          name="NewBottle" 
+          component={NewBottleScreen} 
         />
-
-        <Stack.Screen name ="List" component={ListBottle}
-          options={{
-            title: "Liste"
-          }}
+        <Stack.Screen 
+          options={{title:'new categorie'}}
+          name="NewCategorie" 
+          component={NewCategorieScreen} 
         />
-
-<Stack.Screen name ="Detail" component={Detail}
-          options={{
-            title: "Detail"
-          }}
-        />
-
-<Stack.Screen name ="Add" component={AddBottle}
-          options={{
-            title: "Ajout"
-          }}
-        />
-
-<Stack.Screen name ="ConfirmDelete" component={ConfirmDelete}
-          options={{
-            title: "ConfirmDelete"
-          }}
-        />
-
-<Stack.Screen name ="CreateCategorie" component={CreateCategorie}
-          options={{
-            title: "CreateCategorie"
-          }}
-        />
-
 
       </Stack.Navigator>
-  
+    </NavigationContainer>
   );
 }
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <MyStack />
-    </NavigationContainer>
-  );
-};
+export default App;

@@ -1,106 +1,87 @@
 import React, {Component} from 'react';
-import { View, TextInput, StyleSheet, Picker, Image, Button } from 'react-native';
+import { View, TextInput, StyleSheet, Image, Button } from 'react-native';
+import {Picker} from '@react-native-picker/picker';
    
 
-class AddBottle extends Component {
+function AddBottleScreen() {
 
-  static navigationOptions = ({ navigation }) => {
-    return {
-        headerTitle : "Ajout",
-        headerStyle: {
-            height:200,
-            fontSize:200,
-            color:"red"
-        },
-        headerRight :  <Button
-            title="search"
-            color="#0a0"
-            onPress={() => alert('This is the search')}
-        />,
-        headerLeft : <Button
-            title="Menu"
-            onPress={() => navigation("HomeScreen")}
-        />
-        
-    }
-}
 
-    constructor(props){
-        super(props)
+
+    // constructor(props){
+    //     super(props)
     
-        this.state = {
-            listCategorie : [],
-            categorie : "",
-            categorieID : 1,
-            name : "nom",
-            amount : 0,
-            score : 0,
-            description : "description"            
-        }
-    }
+    //     this.state = {
+    //         listCategorie : [],
+    //         categorie : "",
+    //         categorieID : 1,
+    //         name : "nom",
+    //         amount : 0,
+    //         score : 0,
+    //         description : "description"            
+    //     }
+    // }
 
-    getCategorie = () => {
-      fetch('http://192.168.0.12/request_php/allCategorie.php')
-        .then(res => res.json())
-        .then(res => {
-          this.setState({
-            listCategorie : res,
-            loading : false
-          })
-        })
-      }
+    // getCategorie = () => {
+    //   fetch('http://localhost/request_php/allCategorie.php')
+    //     .then(res => res.json())
+    //     .then(res => {
+    //       this.setState({
+    //         listCategorie : res,
+    //         loading : false
+    //       })
+    //     })
+    //   }
     
     
-    addBottle = () => {  
-        fetch('http://192.168.0.12/request_php/addBottle.php',{
-            method: 'POST',
-            headers: {
-                'Content-Type' : 'application/json',
-            },
-            body:JSON.stringify({
-                "name" : this.state.name,
-                "amount" : this.state.amount,
-                "score" : this.state.score,
-                "description" : this.state.description,
-                "categorie" : this.state.categorieID
-            })
-        })
-    }
+    // addBottle = () => {  
+    //     fetch('http://localhost/request_php/addBottle.php',{
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type' : 'application/json',
+    //         },
+    //         body:JSON.stringify({
+    //             "name" : this.state.name,
+    //             "amount" : this.state.amount,
+    //             "score" : this.state.score,
+    //             "description" : this.state.description,
+    //             "categorie" : this.state.categorieID
+    //         })
+    //     })
+    // }
 
-    redirect = () => {
-        this.props.navigation.navigate("ListScreen", 
-        {id : this.state.categorieID}
-        )
-    }
+    // redirect = () => {
+    //     this.props.navigation.navigate("ListScreen", 
+    //     {id : this.state.categorieID}
+    //     )
+    // }
     
-    componentDidMount(){
-      this.getCategorie()
-    }
+    // componentDidMount(){
+    //   this.getCategorie()
+    // }
 
-    render() {
+    // render() {
 
-      let tabCategorie = []
+    //   let tabCategorie = []
 
-      this.state.listCategorie.forEach(categorie => {
-        tabCategorie.push(
-          <Picker.Item label={categorie.categorie} value={categorie.id} />
-        )
-      })
+    //   this.state.listCategorie.forEach(categorie => {
+    //     tabCategorie.push(
+    //       <Picker.Item label={categorie.categorie} value={categorie.id} />
+    //     )
+    //   })
 
 
 
-        return (
-          <View>
-
-            <View>
-              <Picker
-                selectedValue={this.state.categorie}
-                style={{height: 50, width: 200}}
-                onValueChange={(itemValue, itemIndex) =>
-                  this.setState({categorie: itemValue,
-                                categorieID: itemIndex})
-                }>
-                <Picker.Item label="sélectionné une catégorie" value="" />
+  return (
+    <View>
+      <View>
+        <Picker
+        selectedValue={this.state.categorie}
+        style={{height: 50, width: 200}}
+        onValueChange={(itemValue, itemIndex) =>
+          this.setState({categorie: itemValue,
+                       categorieID: itemIndex})
+        }>
+        <Picker.Item label="sélectionné une catégorie" value="" />
                 {tabCategorie}
              </Picker>
             </View>
@@ -163,7 +144,7 @@ class AddBottle extends Component {
           </View>
           )
     }
-}
+
 
 const styles = StyleSheet.create({
     main_container: {
@@ -215,4 +196,4 @@ const styles = StyleSheet.create({
    
    })
 
-export default AddBottle
+export default AddBottleScreen

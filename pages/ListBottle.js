@@ -41,7 +41,7 @@ class ListBottle extends Component {
 
     // récuperer la liste de toutes les bouteilles
     getListBottle = () => {
-      fetch('http://192.168.0.13/request_php/listBottle.php',{
+      fetch('http://localhost/request_php/listBottle.php',{
           method: 'POST',
           headers:{
               'Content-Type' : 'application/json',

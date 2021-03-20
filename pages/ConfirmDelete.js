@@ -35,7 +35,7 @@ class ConfirmDelete extends Component {
     }
     
     deleteBootle = (idBottle) =>{
-        fetch('http://192.168.0.12/request_php/deleteBottle.php',{
+        fetch('http://localhost/request_php/deleteBottle.php',{
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json',

@@ -19,7 +19,7 @@ class Detail extends Component {
     
   
     getDetailBottle = () =>{
-        fetch('http://192.168.0.13/request_php/bottleWithId.php',{
+        fetch('http://localhost/request_php/bottleWithId.php',{
         method: 'POST',
         headers: {
             'Content-Type' : 'application/json',
