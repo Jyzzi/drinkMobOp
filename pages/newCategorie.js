@@ -30,9 +30,23 @@ export default function NewCategorieScreen(){
             console.error(e.message);
         })
     }
+
+    const sendNewCategorie = () => {
+        console.log('function')
+        fetch('http://localhost/requestPHP/newCategorie.php',{
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/json',
+            },
+            body:JSON.stringify({
+                "name":categorieName,
+            })
+        })
+        
+    }
     
     const verifCategorieExistance = (e) => {
-        if (categorieList.find(categorie => categorie.name === e)){
+        if (categorieList.find(categorie => categorie.name === e) || e === ''){
             setBlockButton(true)
             setavailableState('ce nom n\'est pas disponible')
         }
@@ -42,9 +56,6 @@ export default function NewCategorieScreen(){
         }  
     }
         
-    
-
-
     useEffect(() => {
         getCategorieList()
     }, [])
@@ -59,7 +70,7 @@ export default function NewCategorieScreen(){
             <Button
             disabled = {blockButton}
             title="créer cette catégorie"
-            onPress={() => {}}
+            onPress={sendNewCategorie}
             />
             <p>{availableState}</p>
         </View>
