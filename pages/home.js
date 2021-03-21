@@ -5,7 +5,7 @@ import { StyleSheet, Text, View, FlatList, Button, SafeAreaView, ActivityIndicat
 
 
   
-var HomeScreen = ({ navigation}) => {
+const HomeScreen = ({ navigation}) => {
     // constructor(props){
     //     super(props)
         
@@ -61,7 +61,7 @@ var HomeScreen = ({ navigation}) => {
                 <TouchableOpacity style={styles.container}
                     onPress={() => navigation.navigate('NewCategorie')}>
                     <View style={styles.categorie}>
-                        <Text style={styles.categorie_text}>New</Text>  
+                        <Text style={styles.categorie_text}>nouvelle catégorie</Text>  
                     </View>
                 </TouchableOpacity>    
             </View>
@@ -96,7 +96,7 @@ var HomeScreen = ({ navigation}) => {
     },
     categorie_text : {
         textAlign: 'center',
-        fontSize: 40,
+        fontSize: 30,
     }
 })
 

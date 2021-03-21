@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 const Stack = createStackNavigator();
 
-function App() {
+let App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
