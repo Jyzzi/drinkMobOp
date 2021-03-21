@@ -1,63 +1,48 @@
-import React,{Component} from 'react'
+import React,{useState, useEffect} from 'react'
 import { StyleSheet, Text, View, FlatList, Button, SafeAreaView, ActivityIndicator, TouchableOpacity } from 'react-native'
-
+import CategorieInList from '../components/CategorieInList'
 
 
 
   
 const HomeScreen = ({ navigation}) => {
-    // constructor(props){
-    //     super(props)
-        
-    // this.state = {
-    //     allCategorie : [],
-    //     loading : true,
-    //     numberColumns: 2
-    // }
     
-    // }
-    // // récuperer la liste de toutes les Categories
-    // getCategorie = () => {
-    //   fetch('http://localhost/request_php/allCategorie.php')
-    //     .then(res => res.json())
-    //     .then(res => {
-    //       this.setState({
-    //         allCategorie : res,
-    //         loading : false
-    //       })
-    //     })
-    //     .catch(e => {
-    //         console.error(e.message);
-    //     })
-    //   }
-    
-    // // naviguer avec clic sur catégorie
-    // _listBottleWithCategorie = (id) => {
-    //     this.props.navigation.navigate("List", {id:id})
-    // }
-    
-    // // créer une nouvelle catégorie
-    // CreateNewCategorie = () => {
-    //     navigation.navigate("CreateCategorieScreen")
-    // }
 
+    const [categorieList, setCategorieList] = useState()
 
-    // componentDidMount(){
-    //     this.getCategorie()
-    // }
+    // récuperer la liste de toutes les Categories
+    const getCategorieList = () => {
+      fetch('http://localhost/requestPHP/listCategorie.php')
+        .then(res => res.json())
+        .then(res => {
+            setCategorieList(res)
+        })
+        .catch(e => {
+            console.error(e.message);
+        })
+      }
+    
+    // naviguer avec clic sur catégorie
+    const listBottleWithCategorie = (id) => {
+        navigation.navigate("ListBottle", {id:id})
+    }
+
+    useEffect(() => {
+        getCategorieList()
+    }, [])
     
       
     return(
         <SafeAreaView style={styles.background}>
             <View style={styles.content}>
-                {/* <FlatList style={styles.list}
-                    data={this.state.allCategorie}
+                <FlatList style={styles.list}
+                    data={categorieList}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({item}) =>
-                        <Categorie data={item} 
-                        listBottleWithCategorie={this._listBottleWithCategorie}     
+                        <CategorieInList data={item} 
+                        listBottleWithCategorie={listBottleWithCategorie}     
                         />}
-                /> */}
+                />
                 <TouchableOpacity style={styles.container}
                     onPress={() => navigation.navigate('NewCategorie')}>
                     <View style={styles.categorie}>

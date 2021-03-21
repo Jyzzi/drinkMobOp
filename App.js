@@ -4,6 +4,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import  HomeScreen  from './pages/home';
 import  NewBottleScreen  from './pages/newBottle';
 import  NewCategorieScreen  from './pages/newCategorie';
+import  ListBottleScreen from './pages/ListBottle';
+
+
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 
@@ -60,6 +63,11 @@ let App = () => {
           options={{title:'new categorie'}}
           name="NewCategorie" 
           component={NewCategorieScreen} 
+        />
+        <Stack.Screen 
+          options={{title:'List Bottle'}}
+          name="ListBottle" 
+          component={ListBottleScreen} 
         />
 
       </Stack.Navigator>

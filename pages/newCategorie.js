@@ -32,7 +32,6 @@ export default function NewCategorieScreen(){
     }
 
     const sendNewCategorie = () => {
-        console.log('function')
         fetch('http://localhost/requestPHP/newCategorie.php',{
             method: 'POST',
             headers: {
@@ -41,8 +40,7 @@ export default function NewCategorieScreen(){
             body:JSON.stringify({
                 "name":categorieName,
             })
-        })
-        
+        })  
     }
     
     const verifCategorieExistance = (e) => {

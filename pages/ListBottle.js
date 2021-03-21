@@ -3,112 +3,88 @@ import { StyleSheet, Text, View, FlatList, Button, ActivityIndicator} from 'reac
 import BottleOnList from '../components/BottleOnList'
 
 
-class ListBottle extends Component {
-
-    static navigationOptions = ({ navigation }) => {
-        return {
-            headerTitle:"Liste",
-            headerStyle: {
-                height:100,
-                fontSize:200
-            },
-            headerRight :  <Button
-                title="search"
-                color="#0a0"
-                onPress={() => alert('This is the search')}
-            />,
-            headerLeft : <Button
-                title="Menu"
-                onPress={() => navigation.toggleDrawer()}
-            />
-            
-        }
-    }
+class ListBottleScreen extends Component {
 
 
-    
-    constructor(props){
-        super(props)
-        
-    
-    console.log(this.props.route.params.id)
-    this.state = {
-        idCategorie : this.props.route.params.id,
-        listBottle : [],
-        loading : true
-    }
-    }
+  
+//     console.log(this.props.route.params.id)
+//     this.state = {
+//         idCategorie : this.props.route.params.id,
+//         listBottle : [],
+//         loading : true
+//     }
+//     }
 
-    // récuperer la liste de toutes les bouteilles
-    getListBottle = () => {
-      fetch('http://localhost/request_php/listBottle.php',{
-          method: 'POST',
-          headers:{
-              'Content-Type' : 'application/json',
-          },
-          body:JSON.stringify({
-              'id' : this.state.idCategorie,
-          })
-      })
-        .then(res => res.json())
-        .then(res => {
-          this.setState({
-            listBottle : res,
-            loading : false
-          })
-        })
-      }
+//     // récuperer la liste de toutes les bouteilles
+//     getListBottle = () => {
+//       fetch('http://localhost/request_php/listBottle.php',{
+//           method: 'POST',
+//           headers:{
+//               'Content-Type' : 'application/json',
+//           },
+//           body:JSON.stringify({
+//               'id' : this.state.idCategorie,
+//           })
+//       })
+//         .then(res => res.json())
+//         .then(res => {
+//           this.setState({
+//             listBottle : res,
+//             loading : false
+//           })
+//         })
+//       }
 
 
 
-    _detailBottle = (id) => {
-        this.props.navigation.navigate("Detail", {id : id})
-    }
+//     _detailBottle = (id) => {
+//         this.props.navigation.navigate("Detail", {id : id})
+//     }
 
 
-    componentDidMount(){
-        this.getListBottle()
-      }
+//     componentDidMount(){
+//         this.getListBottle()
+//       }
     
       
         
-    render() {
-        // if (this.state.loading) {
-        //     return (
-        //     <View style={styles.loading_container}>
-        //         <ActivityIndicator size ='large'/>
-        //         <Text>Vérifier service Apache et nginx</Text>
-        //     </View>
-        //     )
-        // }
-        // else{
-            return (
+//     render() {
+//         // if (this.state.loading) {
+//         //     return (
+//         //     <View style={styles.loading_container}>
+//         //         <ActivityIndicator size ='large'/>
+//         //         <Text>Vérifier service Apache et nginx</Text>
+//         //     </View>
+//         //     )
+//         // }
+//         // else{
+//             return (
                
-                    <View>
-                        <FlatList
-                        data={this.state.listBottle}
-                        keyExtractor={(item) => item.id.toString()}
-                        renderItem={({item}) => <BottleOnList data={item} detailBottle={this._detailBottle} />}
-                        />
-                    </View>
+//                     <View>
+//                         <FlatList
+//                         data={this.state.listBottle}
+//                         keyExtractor={(item) => item.id.toString()}
+//                         renderItem={({item}) => <BottleOnList data={item} detailBottle={this._detailBottle} />}
+//                         />
+//                     </View>
                 
-            )
-            }
-        }
+//             )
+//             }
+//         }
         
-    //}
+//     //}
     
 
- const styles = StyleSheet.create({
-    loading_container: {
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        top: 100,
-        bottom: 0,
-        alignItems: 'center',
-        justifyContent: 'center'
-    }
-    })
-
-export default ListBottle
+//  const styles = StyleSheet.create({
+//     loading_container: {
+//         position: 'absolute',
+//         left: 0,
+//         right: 0,
+//         top: 100,
+//         bottom: 0,
+//         alignItems: 'center',
+//         justifyContent: 'center'
+//     }
+//     })
+}
+export default ListBottleScreen
