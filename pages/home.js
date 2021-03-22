@@ -23,6 +23,7 @@ const HomeScreen = ({ navigation}) => {
         navigation.navigate("ListBottle", {id:id})
     }
 
+    // récupère la liste des catégories au 1er chargement de la page
     useEffect(() => {
         getCategorieList()
     }, [])

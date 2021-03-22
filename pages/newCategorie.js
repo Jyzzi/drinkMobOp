@@ -2,9 +2,6 @@ import React,{useEffect, useState} from 'react'
 import { StyleSheet, View, FlatList, Button, ActivityIndicator, TextInput } from 'react-native'
 
 
-
-
-
 export default function NewCategorieScreen(){
 
     const [categorieName, setCategorieName] = useState('rentrer le nom de votre nouvelle catégorie')
@@ -12,14 +9,17 @@ export default function NewCategorieScreen(){
     const [blockButton, setBlockButton] = useState(false)
     const [availableState, setavailableState] = useState('')
     
+    // garde la valeur du champ text
     const handleCategorieNameChange = (e) => {
         let value = e.target.value
         setCategorieName(value)
         verifCategorieExistance(value)
     }
 
+    // permet de ctrl-a au premier clic
     const handleFocus = (event) => event.target.select();
 
+    // recupère la liste des catégories
     const getCategorieList = () => {
         fetch('http://localhost/requestPHP/listCategorie.php')
         .then(res => res.json())
@@ -31,6 +31,7 @@ export default function NewCategorieScreen(){
         })
     }
 
+    // envoie la nouvelle catégorie à créer
     const sendNewCategorie = () => {
         fetch('http://localhost/requestPHP/newCategorie.php',{
             method: 'POST',
@@ -43,6 +44,7 @@ export default function NewCategorieScreen(){
         })  
     }
     
+    // vérifie si la catégorie écrite rentrée n'existe pas déjà dans la liste
     const verifCategorieExistance = (e) => {
         if (categorieList.find(categorie => categorie.name === e) || e === ''){
             setBlockButton(true)
@@ -53,7 +55,8 @@ export default function NewCategorieScreen(){
             setavailableState('ce nom est disponible')
         }  
     }
-        
+    
+    // récupère la list au premier chargement de la page
     useEffect(() => {
         getCategorieList()
     }, [])

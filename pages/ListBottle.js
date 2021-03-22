@@ -24,6 +24,7 @@ const ListBottleScreen = ({route, navigation}) => {
         .catch(e => console.error(e.message))
     }
 
+    // redirige vers le detail de la bouteille
     const detailBottle = (id) => {
         navigation.navigate("DetailBottle", {id : id})
     }
