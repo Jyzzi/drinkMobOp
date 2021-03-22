@@ -1,4 +1,4 @@
-import React,{Component} from 'react'
+import React from 'react'
 import { StyleSheet, View, Text, TouchableOpacity} from 'react-native'
 import { GestureHandler } from 'expo';
 import Swipeable from 'react-native-gesture-handler/Swipeable';

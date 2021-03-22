@@ -1,9 +1,9 @@
 import React,{useState, useEffect} from 'react'
-import { StyleSheet, Text, View, FlatList, Button, SafeAreaView, ActivityIndicator, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, FlatList, Button, SafeAreaView,TouchableOpacity } from 'react-native'
 import CategorieInList from '../components/CategorieInList'
 
 
-
+    
   
 const HomeScreen = ({ navigation}) => {
     
@@ -12,15 +12,11 @@ const HomeScreen = ({ navigation}) => {
 
     // récuperer la liste de toutes les Categories
     const getCategorieList = () => {
-      fetch('http://localhost/requestPHP/listCategorie.php')
+        fetch('http://localhost/requestPHP/listCategorie.php')
         .then(res => res.json())
-        .then(res => {
-            setCategorieList(res)
-        })
-        .catch(e => {
-            console.error(e.message);
-        })
-      }
+        .then(res => setCategorieList(res))
+        .catch(e => console.error(e.message))
+    }
     
     // naviguer avec clic sur catégorie
     const listBottleWithCategorie = (id) => {

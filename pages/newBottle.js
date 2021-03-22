@@ -3,7 +3,7 @@ import { View, TextInput, StyleSheet, Image, Button } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
    
 
-function AddBottleScreen() {
+let AddBottleScreen = () => {
 
 
 
