@@ -1,88 +1,54 @@
-import React,{Component} from 'react'
+import React,{useState, useEffect} from 'react'
 import { View, FlatList,ActivityIndicator,StyleSheet, Button } from 'react-native'
-import DetailBottle from '../components/BottleDetailComp'
+import Bottlefiche from '../components/BottleFiche'
 
-class Detail extends Component {
+const DetailBottleScreen = ({route, navigation}) => {
 
-    
-    constructor(props){
-        super(props)
-
-    
-    this.state = {
-        idBottle : this.props.route.params.id,
-        dataBottle : [],
-        loading : true
-    }
-    
-    }
-    
+    const idBottle = route.params.id
+    const [dataBottle,setDataBottle] = useState()
   
+    // récupère les informations de la bouteille
     getDetailBottle = () =>{
-        fetch('http://localhost/request_php/bottleWithId.php',{
-        method: 'POST',
-        headers: {
-            'Content-Type' : 'application/json',
-        },
-        body:JSON.stringify({
-            "id" : this.state.idBottle,
-        })
-    })  
+        fetch('http://localhost/requestPHP/bottleWithId.php',{
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/json',
+            },
+            body:JSON.stringify({
+                "id" : idBottle,
+            })
+        })  
         .then(res => res.json())
-        .then(res => { 
-            this.setState({
-                dataBottle : res,
-                loading :false
-            })  
-        })
+        .then(res => setDataBottle(res))
     }
   
-    componentDidMount(){
-        this.getDetailBottle()
-    }
+    useEffect(() => {
+        getDetailBottle()
+    },[])
 
-    render(){
-        const {navigate} = this.props.navigation;
-        // Si loading est Vrai, on affiche un chargement
-        if (this.state.loading) {
-          return (
-            <View style={styles.loading_container}>
-              <ActivityIndicator size ='large'/>
+    return (
+        <View>
+            <View>
+                <Bottlefiche data={item}/>
             </View>
-          )
-        }
-        // Sinon on affiche les listes
-        else {
-            return (
-                <View>
-                    <View>
-                    <FlatList
-                        data={this.state.dataBottle}
-                        keyExtractor={(item) => item.id.toString()}
-                        renderItem={({item}) => <DetailBottle data={item} detailBottle ={this._detailBottle} />}
+            <View style={styles.footer}>
+                <View style={styles.button}>
+                    <Button
+                    style = {styles.button}
+                    onPress={() => navigate("EditScreen", {id :this.state.idBottle})}
+                    title ="Modifier"
                     />
-                    </View>
-
-                    <View style={styles.footer}>
-                        <View style={styles.button}>
-                            <Button
-                            style = {styles.button}
-                            onPress={() => navigate("EditScreen", {id :this.state.idBottle})}
-                            title ="Modifier"
-                            />
-                        </View>
-                        <View style={styles.button}>
-                            <Button
-                            style = {styles.button}
-                            onPress={ () => navigate("DeleteScreen", {data : this.state.dataBottle})}
-                            title ="Supprimer"
-                            />
-                        </View>
-                    </View>
                 </View>
-            )
-        }
-    }
+                <View style={styles.button}>
+                    <Button
+                    style = {styles.button}
+                    onPress={ () => navigate("DeleteScreen", {data : this.state.dataBottle})}
+                    title ="Supprimer"
+                    />
+                </View>
+            </View>
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({
@@ -98,4 +64,4 @@ const styles = StyleSheet.create({
   })
 
 
-export default Detail
+export default DetailBottleScreen
