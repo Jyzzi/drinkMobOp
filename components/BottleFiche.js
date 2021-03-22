@@ -2,30 +2,22 @@ import React,{Component} from 'react'
 import { StyleSheet, View, Text, Image } from 'react-native'
 
 
-class DetailBottle extends Component {
-  render() {
-    const { data } = this.props
-    return (
+const BottleFiche = (props) => {
 
-      <View style={styles.main_container}>
-        <Image
-          style={styles.picture}
-          source={{uri: "picture"}}
-        />
-        <View style={styles.content_container}>
-          <View style={styles.header_container}>
-            <Text style={styles.name_text}>{data.name}</Text>
-            <Text style={styles.amount_text}>qt : {data.amount}</Text>
-            <Text style={styles.score_text}>{data.score} / 10</Text>
-          </View>
-          
-          <View style={styles.description_container}>
-            <Text style={styles.description_text} numberOfLines={6}>{data.description}</Text>
-          </View>
-        </View>
-      </View>
+    return (
+      	<View style={styles.main_container}>
+        	<View style={styles.content_container}>
+          		<View style={styles.header_container}>
+            		<Text style={styles.name_text}>{props.data.name}</Text>
+            		<Text style={styles.score_text}>{props.data.score} / 10</Text>
+            		<Text style={styles.amount_text}>qt : {props.data.amount}</Text>
+          		</View>
+          		<View style={styles.description_container}>
+            		<Text style={styles.description_text} numberOfLines={6}>{props.data.description}</Text>
+          		</View>
+        	</View>
+      	</View>
     )
-}
 }
 
 const styles = StyleSheet.create({
@@ -77,4 +69,4 @@ const styles = StyleSheet.create({
  
 })
 
-export default DetailBottle
+export default BottleFiche
