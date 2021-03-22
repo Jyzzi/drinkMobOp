@@ -21,7 +21,17 @@ const DetailBottleScreen = ({route, navigation}) => {
         .then(res => res.json())
         .then(res => setDataBottle(res))
     }
-  
+
+    // redirige vers l'ecran de modification
+    const navEditScreen = () => {
+        navigation.navigate('EditBottleScreen', {id:idBottle})
+    }
+
+    // redirige vers l'ecran de suppression
+    const navDeleteScreen = () => {
+        navigation.navigate('DeleteBottleScreen', {id:idBottle})
+    }
+
     useEffect(() => {
         getDetailBottle()
     },[])
@@ -35,14 +45,14 @@ const DetailBottleScreen = ({route, navigation}) => {
                 <View style={styles.button}>
                     <Button
                     style = {styles.button}
-                    onPress={() => navigate("EditScreen", {id :this.state.idBottle})}
+                    onPress={navEditScreen}
                     title ="Modifier"
                     />
                 </View>
                 <View style={styles.button}>
                     <Button
                     style = {styles.button}
-                    onPress={ () => navigate("DeleteScreen", {data : this.state.dataBottle})}
+                    onPress={navDeleteScreen}
                     title ="Supprimer"
                     />
                 </View>
