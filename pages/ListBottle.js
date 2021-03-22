@@ -25,8 +25,8 @@ const ListBottleScreen = ({route, navigation}) => {
     }
 
     // redirige vers le detail de la bouteille
-    const detailBottle = (id) => {
-        navigation.navigate("DetailBottle", {id : id})
+    const detailBottle = () => {
+        navigation.navigate("DetailBottle", {id : idCategorie})
     }
 
     useEffect(() => {
