@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import { StyleSheet, Text, View, FlatList, Button} from 'react-native'
-import BottleOnList from '../components/BottleOnList'
+import BottleInList from '../components/BottleInList'
 
 
 const ListBottleScreen = ({route, navigation}) => {
@@ -39,7 +39,7 @@ const ListBottleScreen = ({route, navigation}) => {
             data={listBottle}
             keyExtractor={(item) => item.id.toString()}
             renderItem={({item}) => 
-                <BottleOnList data={item} 
+                <BottleInList data={item} 
                 detailBottle={detailBottle} 
                 />
             }

@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 
 
-const BottleOnList = (props) => {
+const BottleInList = (props) => {
     return (
         <TouchableOpacity 
         style={styles.main_container}
@@ -68,4 +68,4 @@ const styles = StyleSheet.create({
   	}
 })
 
-export default BottleOnList
+export default BottleInList
